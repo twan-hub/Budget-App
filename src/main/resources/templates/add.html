@@ -10,25 +10,26 @@
 <form method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="name">Name</label>
-        <input class="form-control" th:field="${grocerylists.name}" />
-        <span th:errors="${grocerylists.name}" class="error"></span>
+        <input class="form-control" th:field="${grocerylist.name}" />
+        <span th:errors="${grocerylist.name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="category">Category</label>
+        <input class="form-control" th:field="${grocerylist.category}" />
+        <span th:errors="${grocerylist.category}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="location">Location</label>
-        <input class="form-control" th:field="${grocerylists.location}" />
-        <span th:errors="${grocerylists.location}" class="error"></span>
+        <input class="form-control" th:field="${grocerylist.location}" />
+        <span th:errors="${grocerylist.location}" class="error"></span>
     </div>
     <div class="form-group">
-        <label th:for="category">Category</label>
-        <input class="form-control" th:field="${grocerylists.category}" />
-        <span th:errors="${grocerylists.category}" class="error"></span>
+        <label th:for="items">Items</label>
+        <input class="form-control" th:field="${grocerylist.items}" />
+        <span th:errors="${grocerylist.items}" class="error"></span>
     </div>
-    <div class="form-group">
-            <label th:for="items">Item/Items</label>
-            <input class="form-control" th:field="${grocerylists.items}" />
-            <span th:errors="${grocerylists.items}" class="error"></span>
-    </div>
-    <input type="submit" value="Add Grocery List" />
+    <input type="submit" value="Add List" />
 </form>
 
 </body>

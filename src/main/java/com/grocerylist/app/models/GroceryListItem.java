@@ -15,6 +15,7 @@ public class GroceryListItem extends AbstractEntity{
 
     private int quantity;
 
+
     public GroceryListItem(){
 
     }

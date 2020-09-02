@@ -10,10 +10,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class GroceryListController {
+
 
     @Autowired
     private GroceryListRepository groceryListRepository;
@@ -21,38 +23,46 @@ public class GroceryListController {
     @RequestMapping("")
     public String index(Model model) {
 
-        model.addAttribute("title", "New Grocery List");
-        model.addAttribute("grocerylists",groceryListRepository.findAll());
-
+        model.addAttribute("title", "Grocery List");
+        model.addAttribute("grocerylists", groceryListRepository.findAll());
         return "index";
     }
 
     @GetMapping("add")
-    public String displayAddGroceryListForm(Model model) {
-        model.addAttribute("title", "New Grocery List");
-//        GroceryList testlist=new GroceryList();
-//        GroceryListItem list= new GroceryListItem("Food",5);
-        model.addAttribute( new GroceryList());
+    public String displayAddJobForm(Model model) {
+        model.addAttribute("title", "Add Grocery List");
+        model.addAttribute("grocerylist",new GroceryList());
         return "add";
     }
 
     @PostMapping("add")
-    public String processAddGroceryListForm(@ModelAttribute @Valid GroceryList newGroceryList,
-                                            Errors errors, Model model) {
+    public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
+                                    Errors errors, Model model) {
+
         if (errors.hasErrors()) {
-            model.addAttribute("title", "New Grocery List");
+            model.addAttribute("title", "Add Grocery List");
             return "add";
         }
+
+//        Optional<Employer> optEmployer = employerRepository.findById(employerId);
+//        if(optEmployer.isEmpty()){
+//            return "add";
+//        }else{
+//            Employer employer = optEmployer.get();
+//            newJob.setEmployer(employer);
+//            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
+//            newJob.setSkills(skillObjs);
         groceryListRepository.save(newGroceryList);
-        model.addAttribute("grocerylists",groceryListRepository.findAll());
+        model.addAttribute("grocerylist",groceryListRepository.findAll());
+//        }
+
 
         return "redirect:";
     }
 
-    @GetMapping("view/{grocerylist{Id}")
-    public String displayViewGroceryList(Model model, @PathVariable int groceryListId) {
-
-        Optional optGroceryList = groceryListRepository.findById(groceryListId);
+    @GetMapping("view/{grocerylistId}")
+    public String displayViewJob(Model model, @PathVariable int grocerylistId) {
+        Optional optGroceryList = groceryListRepository.findById(grocerylistId);
         if (optGroceryList.isPresent()) {
             GroceryList groceryList = (GroceryList) optGroceryList.get();
             model.addAttribute("grocerylists", groceryList);

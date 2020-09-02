@@ -21,7 +21,6 @@ public class GroceryList extends AbstractEntity{
     private List<GroceryListItem> items= new ArrayList<>();
 
     public GroceryList(){
-
     }
 
     public GroceryList(String aName,String aLocation,String aCategory, List<GroceryListItem> aItem){
@@ -31,10 +30,6 @@ public class GroceryList extends AbstractEntity{
         this.name=aName;
         this.items=aItem;
     }
-
-//    public void addItem(GroceryListItem groceryListItem){
-//        this.items.add(groceryListItem);
-//    }
 
 //    Getters and Setters
 
