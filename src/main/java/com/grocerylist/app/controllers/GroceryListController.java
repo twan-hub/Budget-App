@@ -31,7 +31,9 @@ public class GroceryListController {
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Grocery List");
-        model.addAttribute("grocerylist",new GroceryList());
+        GroceryList neGr= new GroceryList();
+        neGr.addItem(new GroceryListItem("",0));
+        model.addAttribute("grocerylist",neGr);
         return "add";
     }
 
@@ -52,6 +54,7 @@ public class GroceryListController {
 //            newJob.setEmployer(employer);
 //            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
 //            newJob.setSkills(skillObjs);
+//        newGroceryList.addItem(new GroceryListItem("Food",5));
         groceryListRepository.save(newGroceryList);
         model.addAttribute("grocerylist",groceryListRepository.findAll());
 //        }

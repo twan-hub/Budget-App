@@ -26,8 +26,13 @@
     </div>
     <div class="form-group">
         <label th:for="items">Items</label>
-        <input class="form-control" th:field="${grocerylist.items}" />
-        <span th:errors="${grocerylist.items}" class="error"></span>
+        <div th:each="i, itemStat : *{grocerylist.items}">
+            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].name}" />
+            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].quantity}" />
+<!--            <span th:text="${i.quantity}"></span>-->
+        </div>
+<!--        <input class="form-control" th:field="${grocerylist.items}" />-->
+<!--        <span th:errors="${grocerylist.items}" class="error"></span>-->
     </div>
     <input type="submit" value="Add List" />
 </form>

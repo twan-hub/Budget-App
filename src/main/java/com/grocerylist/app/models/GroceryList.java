@@ -31,6 +31,10 @@ public class GroceryList extends AbstractEntity{
         this.items=aItem;
     }
 
+    public void addItem(GroceryListItem newItem){
+        items.add(newItem);
+    }
+
 //    Getters and Setters
 
 

@@ -11,7 +11,11 @@
     <p th:text="${'Name: ' + grocerylists.name}"></p>
     <p th:text="${'Category: ' + grocerylists.category}"></p>
     <p th:text="${'Location: ' + grocerylists.location}"></p>
-    <p th:text="${'Items: ' + grocerylists.items}"></p>
+<!--    <p th:text="${'Items: ' + grocerylists.items}"></p>-->
+    <ul th:each="i : ${grocerylists.items}">
+        <li th:text="${'Item : ' + i.name}"></li>
+        <li th:text="${'Quantity : ' + i.quantity}"></li>
+    </ul>
 </div>
 
 
