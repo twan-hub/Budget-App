@@ -39,10 +39,10 @@ public class GroceryListController {
     public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
                                     Errors errors, Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Grocery List");
-            return "add";
-        }
+//        if (errors.hasErrors()) {
+//            model.addAttribute("title", "Add Grocery List");
+//            return "add";
+//        }
 
 //        Optional<Employer> optEmployer = employerRepository.findById(employerId);
 //        if(optEmployer.isEmpty()){
