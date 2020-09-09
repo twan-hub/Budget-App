@@ -16,9 +16,9 @@ import java.util.Optional;
 @Controller
 public class GroceryListController {
 
-
     @Autowired
     private GroceryListRepository groceryListRepository;
+    public GroceryList neGr= new GroceryList();
 
     @RequestMapping("")
     public String index(Model model) {
@@ -31,11 +31,13 @@ public class GroceryListController {
     @GetMapping("add")
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Grocery List");
-        GroceryList neGr= new GroceryList();
-        neGr.addItem(new GroceryListItem("",0));
+
+        neGr.addItem(new GroceryListItem());
         model.addAttribute("grocerylist",neGr);
         return "add";
     }
+
+
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
