@@ -18,6 +18,7 @@ public class GroceryListController {
 
     @Autowired
     private GroceryListRepository groceryListRepository;
+
     public GroceryList neGr= new GroceryList();
 
     @RequestMapping("")
@@ -36,8 +37,6 @@ public class GroceryListController {
         model.addAttribute("grocerylist",neGr);
         return "add";
     }
-
-
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
@@ -76,6 +75,25 @@ public class GroceryListController {
             return "redirect:../";
         }
     }
+
+    @GetMapping("delete")
+    public String renderDeleteEventForm(Model model) {
+//        model.addAttribute("title", "Delete Grocery List");
+        model.addAttribute("grocerylists", groceryListRepository.findAll());
+        return "delete";
+    }
+    @PostMapping("delete")
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] groceryListIds) {
+
+        if (groceryListIds != null) {
+            for (int id : groceryListIds) {
+                groceryListRepository.deleteById(id);
+            }
+        }
+
+        return "redirect:";
+    }
+
 }
 
 

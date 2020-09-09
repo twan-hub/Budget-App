@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+
+<nav th:replace="fragments :: page-header"></nav>
+
+<form method="post">
+
+    <div class="form-group" th:each="grocerylist : ${grocerylists}">
+
+        <span th:text="${grocerylist.name}"></span>
+<!--        <th:block th:each="gro : ${gros}">-->
+            <input type="checkbox" name="groceryListIds" th:value="${grocerylist.id}">
+<!--            <label th:text="${gro.name}"></label>-->
+    </div>
+<!--    <div th:each=" grocerylist: ${groceylists}">-->
+<!--        <div class="form-group">-->
+<!--            <label>-->
+<!--                <span th:text="${grocerylist.name}"></span>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--    </div>-->
+    <input type="submit" value="Delete Selected List">
+</form>
+
+</body>
+</html>

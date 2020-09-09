@@ -8,4 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface GroceryListRepository extends CrudRepository<GroceryList,Integer> {
+
 }
