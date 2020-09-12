@@ -7,16 +7,13 @@
 
 <h1>Add Grocery List</h1>
 
-<form action='#' method="post" th:action="@{/addItem}" th:object="${grocerylist}">
+<form action="#" method="post">
+<!--      th:action="@{/edit/{id}(id=${grocerylist.id})}"-->
+<!--      th:object="${grocerylist}"-->
 
-    <input type="submit" value="Add Item"></input>
-
-</form>
-
-<form method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="name">Name</label>
-        <input class="form-control" th:field="${grocerylist.name}"/>
+        <input class="form-control" th:field="${grocerylist.name}" />
         <span th:errors="${grocerylist.name}" class="error"></span>
     </div>
 
@@ -31,15 +28,15 @@
         <span th:errors="${grocerylist.location}" class="error"></span>
     </div>
     <div class="form-group" th:each="i, itemStat : *{grocerylist.items}">
-            <label th:for="items">Items</label>
-            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].name}" />
-            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].quantity}" />
-            <!--            <span th:text="${i.quantity}"></span>-->
-            <!--        <input class="form-control" th:field="${grocerylist.items}" />-->
-            <!--        <span th:errors="${grocerylist.items}" class="error"></span>-->
+        <label th:for="items">Items</label>
+        <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].name}" />
+        <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].quantity}" />
+        <!--            <span th:text="${i.quantity}"></span>-->
+        <!--        <input class="form-control" th:field="${grocerylist.items}" />-->
+        <!--        <span th:errors="${grocerylist.items}" class="error"></span>-->
 
     </div>
-<!--    <a th:href="@{'/item/add'}">Add Item</a>-->
+    <!--    <a th:href="@{'/item/add'}">Add Item</a>-->
     <br><br>
     <input type="submit" value="Add Grocery List" />
 

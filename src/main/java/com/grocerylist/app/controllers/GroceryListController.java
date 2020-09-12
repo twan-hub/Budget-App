@@ -19,7 +19,8 @@ public class GroceryListController {
     @Autowired
     private GroceryListRepository groceryListRepository;
 
-    public GroceryList neGr= new GroceryList();
+    private GroceryList grocerylist = new GroceryList();
+
 
     @RequestMapping("")
     public String index(Model model) {
@@ -30,11 +31,20 @@ public class GroceryListController {
     }
 
     @GetMapping("add")
-    public String displayAddJobForm(Model model) {
+    public String displayAddJobForm(@ModelAttribute GroceryList grocerylists, Model model) {
         model.addAttribute("title", "Add Grocery List");
 
-        neGr.addItem(new GroceryListItem());
-        model.addAttribute("grocerylist",neGr);
+//        neGr.addItem(new GroceryListItem());
+        model.addAttribute("grocerylist", grocerylists);
+        return "add";
+    }
+
+    @PostMapping("addItem")
+    public String addGroceryListItem(Model model) {
+
+        grocerylist.addItem(new GroceryListItem());
+        model.addAttribute("grocerylist", grocerylist);
+
         return "add";
     }
 
@@ -57,7 +67,7 @@ public class GroceryListController {
 //            newJob.setSkills(skillObjs);
 //        newGroceryList.addItem(new GroceryListItem("Food",5));
         groceryListRepository.save(newGroceryList);
-        model.addAttribute("grocerylist",groceryListRepository.findAll());
+        model.addAttribute("grocerylist", groceryListRepository.findAll());
 //        }
 
 
@@ -82,6 +92,7 @@ public class GroceryListController {
         model.addAttribute("grocerylists", groceryListRepository.findAll());
         return "delete";
     }
+
     @PostMapping("delete")
     public String processDeleteEventsForm(@RequestParam(required = false) int[] groceryListIds) {
 
@@ -94,6 +105,25 @@ public class GroceryListController {
         return "redirect:";
     }
 
-}
+    @GetMapping("edit/{Id}")
+    public String displayEditForm(Model model, @PathVariable("Id") int Id) {
 
+        Optional optGroceryList = groceryListRepository.findById(Id);
+        if (optGroceryList.isPresent()) {
+            GroceryList groceryList = (GroceryList) optGroceryList.get();
+            model.addAttribute("grocerylist", groceryList);
+            groceryListRepository.deleteById(Id);
+            return "edit";
+        } else {
+            return "redirect:../";
+        }
+    }
+
+    @PostMapping("edit/{Id}")
+    public String updateList(@PathVariable("Id") int Id, Model model, GroceryList groceryList) {
+        groceryListRepository.save(groceryList);
+        model.addAttribute("grocerylist", groceryListRepository.findAll());
+        return "redirect:../";
+    }
+}
 

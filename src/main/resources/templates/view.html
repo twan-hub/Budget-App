@@ -16,6 +16,9 @@
         <li th:text="${'Item : ' + i.name}"></li>
         <li th:text="${'Quantity : ' + i.quantity}"></li>
     </ul>
+    <br>
+    <br>
+    <a th:href="@{/edit/{Id}(Id=${grocerylists.id})}">Edit</a>
 </div>
 
 
