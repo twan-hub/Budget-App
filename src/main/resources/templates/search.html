@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+    <form th:action="@{/search/results}" method = "post">
+        <h2>Search by:</h2>
+        <span> Hit </span>
+        <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+
+            </span>
+
+        </p>
+
+        <p>
+            <label for="searchTerm">Keyword:</label>
+            <input type="text" name="searchTerm" id="searchTerm" />
+        </p>
+
+        <input type="submit" value="Search" />
+    </form>
+
+    <hr />
+
+
+    <table class="job-listing">
+        <tr th:each="grocerylist : ${grocerylists}">
+            <td>
+                <p>
+                    Grocery List Id:
+                <p th:text="${'Name: ' + grocerylist.name}"></p>
+                </p>
+                <p>
+                    Category:
+                    <p th:text="${grocerylist.category}"></p>
+                </p>
+                <p>
+                    Location:
+                <ul>
+                    <li>
+                        <p th:text="${grocerylist.location}"></p>
+                    </li>
+                </ul>
+                </p>
+                <p>
+                    Items:
+                <ul th:each="i : ${grocerylist.items}">
+                    <li>
+                        <p th:text="${'Name: ' + i.name}"></p>
+                        <p th:text="${'Quantity: ' + i.quantity}"></p>
+                    </li>
+                </ul>
+                </p>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
