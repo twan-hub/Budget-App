@@ -51,20 +51,11 @@
                 </p>
                 <p>
                     Location:
-                <ul>
-                    <li>
                         <p th:text="${grocerylist.location}"></p>
-                    </li>
-                </ul>
                 </p>
                 <p>
                     Items:
-                <ul th:each="i : ${grocerylist.items}">
-                    <li>
-                        <p th:text="${'Name: ' + i.name}"></p>
-                        <p th:text="${'Quantity: ' + i.quantity}"></p>
-                    </li>
-                </ul>
+                        <p th:text="${grocerylist.item}"></p>
                 </p>
 
             </td>

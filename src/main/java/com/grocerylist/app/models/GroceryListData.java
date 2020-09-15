@@ -56,7 +56,7 @@ public class GroceryListData {
         } else if (fieldName.equals("category")){
             theValue = groceryList.getCategory().toString();
         }else {
-            theValue = groceryList.getItems().toString();
+            theValue = groceryList.getItem().toString();
         }
 
         return theValue;
@@ -82,7 +82,7 @@ public class GroceryListData {
                 results.add(groceryList);
             } else if (groceryList.getCategory().toString().toLowerCase().contains(lower_val)) {
                 results.add(groceryList);
-            } else if (groceryList.getItems().toString().toLowerCase().contains(lower_val)) {
+            } else if (groceryList.getItem().toString().toLowerCase().contains(lower_val)) {
             results.add(groceryList);
             } else if (groceryList.toString().toLowerCase().contains(lower_val)) {
                 results.add(groceryList);

@@ -12,10 +12,11 @@
     <p th:text="${'Category: ' + grocerylists.category}"></p>
     <p th:text="${'Location: ' + grocerylists.location}"></p>
 <!--    <p th:text="${'Items: ' + grocerylists.items}"></p>-->
-    <ul th:each="i : ${grocerylists.items}">
-        <li th:text="${'Item : ' + i.name}"></li>
-        <li th:text="${'Quantity : ' + i.quantity}"></li>
-    </ul>
+<!--    <ul th:each="i : ${grocerylists.items}">-->
+<!--        <li th:text="${'Item : ' + i.name}"></li>-->
+<!--        <li th:text="${'Quantity : ' + i.quantity}"></li>-->
+<!--    </ul>-->
+    <p th:text="${'Item :' + grocerylists.item} "></p>
     <br>
     <br>
     <a th:href="@{/edit/{Id}(Id=${grocerylists.id})}">Edit</a>

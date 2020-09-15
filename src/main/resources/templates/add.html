@@ -7,11 +7,11 @@
 
 <h1>Add Grocery List</h1>
 
-<form action='#' method="post" th:action="@{/addItem}" th:object="${grocerylist}">
+<!--<form action='#' method="post" th:action="@{/addItem}" th:object="${grocerylist}">-->
 
-    <input type="submit" value="Add Item"></input>
+<!--    <input type="submit" value="Add Item"></input>-->
 
-</form>
+<!--</form>-->
 
 <form method="post" style="max-width:600px;">
     <div class="form-group">
@@ -30,10 +30,11 @@
         <input class="form-control" th:field="${grocerylist.location}" />
         <span th:errors="${grocerylist.location}" class="error"></span>
     </div>
-    <div class="form-group" th:each="i, itemStat : *{grocerylist.items}">
+<!--    <div class="form-group" th:each="i, itemStat : *{grocerylist.items}">-->
             <label th:for="items">Items</label>
-            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].name}" />
-            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].quantity}" />
+<!--            <textarea rows="10" cols="30" class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].name}" />-->
+        <textarea rows="10" cols="30" class="form-control" th:field="${grocerylist.item}" />
+<!--            <input class="form-control" th:field="*{grocerylist.items[__${itemStat.index}__].quantity}" />-->
             <!--            <span th:text="${i.quantity}"></span>-->
             <!--        <input class="form-control" th:field="${grocerylist.items}" />-->
             <!--        <span th:errors="${grocerylist.items}" class="error"></span>-->

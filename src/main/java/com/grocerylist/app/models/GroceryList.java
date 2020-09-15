@@ -17,23 +17,33 @@ public class GroceryList extends AbstractEntity{
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<GroceryListItem> items= new ArrayList<>();
+    private String item;
+
+//    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
+//    private List<GroceryListItem> items= new ArrayList<>();
+
+    public String getItem() {
+        return item;
+    }
+
+    public void setItem(String item) {
+        this.item = item;
+    }
 
     public GroceryList(){
     }
 
-    public GroceryList(String aName,String aLocation,String aCategory, List<GroceryListItem> aItem){
+    public GroceryList(String aName,String aLocation,String aCategory, String aItem){
         super();
         this.location=aLocation;
         this.category=aCategory;
         this.name=aName;
-        this.items=aItem;
+        this.item=aItem;
     }
 
-    public void addItem(GroceryListItem newItem){
-        items.add(newItem);
-    }
+//    public void addItem(GroceryListItem newItem){
+//        items.add(newItem);
+//    }
 
 
 //    Getters and Setters
@@ -47,13 +57,13 @@ public class GroceryList extends AbstractEntity{
         this.category = category;
     }
 
-    public List<GroceryListItem> getItems() {
-        return items;
-    }
-
-    public void setItems(List<GroceryListItem> items) {
-        this.items = items;
-    }
+//    public List<GroceryListItem> getItems() {
+//        return items;
+//    }
+//
+//    public void setItems(List<GroceryListItem> items) {
+//        this.items = items;
+//    }
 
     public String getName() {
         return name;

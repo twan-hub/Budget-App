@@ -1,7 +1,6 @@
 package com.grocerylist.app.controllers;
 
 import com.grocerylist.app.models.GroceryList;
-import com.grocerylist.app.models.GroceryListItem;
 import com.grocerylist.app.models.data.GroceryListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +18,6 @@ public class GroceryListController {
     @Autowired
     private GroceryListRepository groceryListRepository;
 
-    private GroceryList grocerylist = new GroceryList();
-
-
     @RequestMapping("")
     public String index(Model model) {
 
@@ -33,20 +29,20 @@ public class GroceryListController {
     @GetMapping("add")
     public String displayAddJobForm(@ModelAttribute GroceryList grocerylists, Model model) {
         model.addAttribute("title", "Add Grocery List");
-
-//        neGr.addItem(new GroceryListItem());
+        grocerylists = new GroceryList();
+//        grocerylists.addItem(new GroceryListItem());
         model.addAttribute("grocerylist", grocerylists);
         return "add";
     }
 
-    @PostMapping("addItem")
-    public String addGroceryListItem(Model model) {
-
-        grocerylist.addItem(new GroceryListItem());
-        model.addAttribute("grocerylist", grocerylist);
-
-        return "add";
-    }
+//    @PostMapping("addItem")
+//    public String addGroceryListItem(Model model) {
+//
+//        grocerylist.addItem(new GroceryListItem());
+//        model.addAttribute("grocerylist", grocerylist);
+//
+//        return "add";
+//    }
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
@@ -112,7 +108,6 @@ public class GroceryListController {
         if (optGroceryList.isPresent()) {
             GroceryList groceryList = (GroceryList) optGroceryList.get();
             model.addAttribute("grocerylist", groceryList);
-            groceryListRepository.deleteById(Id);
             return "edit";
         } else {
             return "redirect:../";
@@ -122,6 +117,8 @@ public class GroceryListController {
     @PostMapping("edit/{Id}")
     public String updateList(@PathVariable("Id") int Id, Model model, GroceryList groceryList) {
         groceryListRepository.save(groceryList);
+        groceryListRepository.deleteById(Id);
+
         model.addAttribute("grocerylist", groceryListRepository.findAll());
         return "redirect:../";
     }
