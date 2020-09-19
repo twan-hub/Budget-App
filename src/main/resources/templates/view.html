@@ -2,26 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 
-<body class="container  body-content">
-<h1 th:text="${'Grocery List: ' + grocerylists.name}">Default Title</h1>
+<body >
+
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<div class="job-listing">
-    <p th:text="${'Name: ' + grocerylists.name}"></p>
-    <p th:text="${'Category: ' + grocerylists.category}"></p>
-    <p th:text="${'Location: ' + grocerylists.location}"></p>
-<!--    <p th:text="${'Items: ' + grocerylists.items}"></p>-->
-<!--    <ul th:each="i : ${grocerylists.items}">-->
-<!--        <li th:text="${'Item : ' + i.name}"></li>-->
-<!--        <li th:text="${'Quantity : ' + i.quantity}"></li>-->
-<!--    </ul>-->
-    <p th:text="${'Item :' + grocerylists.item} "></p>
-    <br>
-    <br>
-    <a th:href="@{/edit/{Id}(Id=${grocerylists.id})}">Edit</a>
-</div>
+<br><br><br>
 
+<div>
+<h2 th:text="${'Grocery List: ' + grocerylists.name}">Default Title</h2>
+    <table class="job-listing">
+        <tr th:each="grocerylist : ${grocerylists}">
+            <td>
+                <p>
+                    <span>Name:</span>
+                    <span th:text="${grocerylist.name}"></span>
+                </p>
+                <p>
+                <p th:text="${'Category: '+grocerylist.category}"></p>
+                </p>
+                <p>
+                <p th:text="${'Location: '+grocerylist.location}"></p>
+                </p>
+                <p>
+                <p th:text="${'Item: '+grocerylist.item}"></p>
+                </p>
+
+            </td>
+        </tr>
+    </table>
+    <br>
+    <p class="button"><a th:href="@{/edit/{Id}(Id=${grocerylists.id})}">Edit</a></p>
+</div>
 
 </body>
 </html>

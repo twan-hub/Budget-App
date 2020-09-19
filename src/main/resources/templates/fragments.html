@@ -6,28 +6,29 @@
     <!-- Bootstrap stylesheets and script -->
 <!--    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" />-->
     <link th:href="@{/go-golist.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{static/bootstrap.js}"></script>
+<!--    <script type="text/javascript" th:src="@{static/bootstrap.js}"></script>-->
 
     <title th:text="'TechJobs' + ${title == null ? '' : ' :: ' + title}">TechJobs</title>
 </head>
 
 <body>
 
-<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">Go-Go List</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+<!--<div  >-->
+<!--    <div class="container">-->
+<!--        <div class="">-->
+<!--            -->
+<!--        </div>-->
+        <nav th:fragment="page-header" class="">
+            <ul class="">
+                <li><a th:href="@{/}" class="">Go-Go List</a></li>
                 <li><a th:href="@{/search}">Search</a></li>
                 <li><a th:href="@{/add}">Add List</a></li>
                 <li><a th:href="@{/delete}">Delete List</a></li>
                 <li><a th:href="@{/logout}">Logout</a></li>
             </ul>
-        </div>
-    </div>
-</div>
+        </nav>
+<!--    </div>-->
+<!--</div>-->
 
 </body>
 </html>

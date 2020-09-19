@@ -29,9 +29,7 @@ public class GroceryListController {
     @GetMapping("add")
     public String displayAddJobForm(@ModelAttribute GroceryList grocerylists, Model model) {
         model.addAttribute("title", "Add Grocery List");
-        grocerylists = new GroceryList();
-//        grocerylists.addItem(new GroceryListItem());
-        model.addAttribute("grocerylist", grocerylists);
+        model.addAttribute(new GroceryList());
         return "add";
     }
 
@@ -45,29 +43,18 @@ public class GroceryListController {
 //    }
 
     @PostMapping("add")
-    public String processAddJobForm(@ModelAttribute @Valid GroceryList newGroceryList,
+    public String processAddJobForm(  @ModelAttribute @Valid GroceryList newGroceryList,
                                     Errors errors, Model model) {
 
-//        if (errors.hasErrors()) {
-//            model.addAttribute("title", "Add Grocery List");
-//            return "add";
-//        }
+        if (errors.hasErrors()) {
+            model.addAttribute("m", "ERROR ERROR");
+            model.addAttribute("title", "Add Grocery List");
+            return "add";
+        }
+            groceryListRepository.save(newGroceryList);
+//        model.addAttribute("grocerylist", groceryListRepository.findAll());
 
-//        Optional<Employer> optEmployer = employerRepository.findById(employerId);
-//        if(optEmployer.isEmpty()){
-//            return "add";
-//        }else{
-//            Employer employer = optEmployer.get();
-//            newJob.setEmployer(employer);
-//            List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
-//            newJob.setSkills(skillObjs);
-//        newGroceryList.addItem(new GroceryListItem("Food",5));
-        groceryListRepository.save(newGroceryList);
-        model.addAttribute("grocerylist", groceryListRepository.findAll());
-//        }
-
-
-        return "redirect:";
+            return "redirect:";
     }
 
     @GetMapping("view/{grocerylistId}")
@@ -104,10 +91,11 @@ public class GroceryListController {
     @GetMapping("edit/{Id}")
     public String displayEditForm(Model model, @PathVariable("Id") int Id) {
 
+        model.addAttribute("title", "Edit Grocery List");
         Optional optGroceryList = groceryListRepository.findById(Id);
         if (optGroceryList.isPresent()) {
             GroceryList groceryList = (GroceryList) optGroceryList.get();
-            model.addAttribute("grocerylist", groceryList);
+            model.addAttribute("groceryList", groceryList);
             return "edit";
         } else {
             return "redirect:../";
@@ -115,7 +103,13 @@ public class GroceryListController {
     }
 
     @PostMapping("edit/{Id}")
-    public String updateList(@PathVariable("Id") int Id, Model model, GroceryList groceryList) {
+    public String updateList(@PathVariable("Id") int Id, Model model, @ModelAttribute @Valid GroceryList groceryList,
+                             Errors errors) {
+        if (errors.hasErrors()) {
+            model.addAttribute("m", "ERROR ERROR");
+            model.addAttribute("title", "Edit Grocery List");
+            return "edit";
+        }
         groceryListRepository.save(groceryList);
         groceryListRepository.deleteById(Id);
 

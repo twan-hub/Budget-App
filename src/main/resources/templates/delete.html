@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+
+<body>
 
 <nav th:replace="fragments :: page-header"></nav>
 
-<form method="post">
+<br><br><br>
 
-    <div class="form-group" th:each="grocerylist : ${grocerylists}">
+<div>
+    <h2>Delete List</h2>
+        <form method="post">
 
-        <span th:text="${grocerylist.name}"></span>
-            <input type="checkbox" name="groceryListIds" th:value="${grocerylist.id}">
-    </div>
+        <span>
+        <table class="job-listing">
+            <tr th:each="grocerylist : ${grocerylists}">
+                <td>
+                    <input type="checkbox" name="groceryListIds" th:value="${grocerylist.id}">
+                    <p>
+                        <span>Name:</span>
+                        <span th:text="${grocerylist.name}"></span>
+                    </p>
+                    <p>
+                    <p th:text="${'Category: '+grocerylist.category}"></p>
+                    </p>
+                    <p>
+                <p th:text="${'Location: '+grocerylist.location}"></p>
+                    </p>
+                    <p>
+                <p th:text="${'Item: '+grocerylist.item}"></p>
+                    </p>
+                </td>
+            </tr>
+
+        </table>
+        </span>
+
     <input type="submit" value="Delete Selected List">
-</form>
+        </form>
+    <!--    <div class="form-group" th:each="grocerylist : ${grocerylists}">-->
 
+    <!--        <span th:text="${grocerylist.name}"></span>-->
+    <!--            <input type="checkbox" name="groceryListIds" th:value="${grocerylist.id}">-->
+    <!--    </div>-->
+    <br>
+    <br>
+    </div>
 </body>
 </html>

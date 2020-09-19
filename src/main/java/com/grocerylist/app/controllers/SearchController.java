@@ -45,7 +45,7 @@ public class SearchController {
             jobs = GroceryListData.findByColumnAndValue(searchType, searchTerm, groceryListRepository.findAll());
         }
         model.addAttribute("columns", columnChoices);
-        model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
+        model.addAttribute("title", "Grocery List with " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("grocerylists", jobs);
 
         return "search";

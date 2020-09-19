@@ -4,17 +4,19 @@
 </head>
 <body>
 
-<div th:replace="fragments :: page-header"></div>
+<nav th:replace="fragments :: page-header"></nav>
+
+<br><br>
 
 <div class="container body-content">
 
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
     <form th:action="@{/search/results}" method = "post">
-        <h2>Search by:</h2>
-        <span> Hit </span>
+
         <p>
-            <span th:each="column : ${columns}">
+
+            <span style="font-size:18px">Search by:</span><span th:each="column : ${columns}">
                 <input
                         type="radio"
                         name="searchType"
@@ -42,20 +44,17 @@
         <tr th:each="grocerylist : ${grocerylists}">
             <td>
                 <p>
-                    Grocery List Id:
-                <p th:text="${'Name: ' + grocerylist.name}"></p>
+                    <span>Name:</span>
+                    <span><a style="color:green" th:href="@{/view/{Id}(Id=${grocerylist.id})}" th:text="${grocerylist.name}"></a></span>
                 </p>
                 <p>
-                    Category:
-                    <p th:text="${grocerylist.category}"></p>
+                    <p th:text="${'Category: '+grocerylist.category}"></p>
                 </p>
                 <p>
-                    Location:
-                        <p th:text="${grocerylist.location}"></p>
+                        <p th:text="${'Location: '+grocerylist.location}"></p>
                 </p>
                 <p>
-                    Items:
-                        <p th:text="${grocerylist.item}"></p>
+                        <p th:text="${'Item: '+grocerylist.item}"></p>
                 </p>
 
             </td>

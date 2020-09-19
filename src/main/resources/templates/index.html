@@ -4,15 +4,32 @@
 </head>
 <body>
 
-<div th:replace="fragments :: page-header"></div>
+<nav th:replace="fragments :: page-header"></nav>
+
+<br><br><br>
 
 <div class="container body-content">
     <h2>Grocery List</h2>
-    <ul>
-        <li th:each="grocerylist : ${grocerylists}">
-            <a th:href="@{'/view/' + ${grocerylist.id}}" th:text="${grocerylist.name}"></a>
-        </li>
-    </ul>
+    <table class="job-listing">
+        <tr th:each="grocerylist : ${grocerylists}">
+            <td>
+                <p>
+                    <span>Name:</span>
+                    <span><a style="color:green" th:href="@{/view/{Id}(Id=${grocerylist.id})}" th:text="${grocerylist.name}"></a></span>
+                </p>
+                <p>
+                <p th:text="${'Category: '+grocerylist.category}"></p>
+                </p>
+                <p>
+                <p th:text="${'Location: '+grocerylist.location}"></p>
+                </p>
+                <p>
+                <p th:text="${'Item: '+grocerylist.item}"></p>
+                </p>
+
+            </td>
+        </tr>
+    </table>
 
 </div>
 

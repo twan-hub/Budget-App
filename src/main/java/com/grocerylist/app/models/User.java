@@ -1,13 +1,18 @@
 package com.grocerylist.app.models;
 
+import com.grocerylist.app.models.data.GroceryListRepository;
 import com.sun.istack.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User extends AbstractEntity{
 
+//    @OneToMany
+//    private GroceryListRepository groceryListRepository;
     @NotNull
     private String username;
     @NotNull

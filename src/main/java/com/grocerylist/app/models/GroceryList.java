@@ -11,12 +11,20 @@ import java.util.Set;
 @Entity
 public class GroceryList extends AbstractEntity{
 
+    @NotBlank
+    @NotNull
     private String location;
 
+    @NotBlank
+    @NotNull
     private String category;
 
+    @NotBlank
+    @NotNull
     private String name;
 
+    @NotBlank
+    @NotNull
     private String item;
 
 //    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true)
